@@ -6,7 +6,24 @@ import { GalleryIcon } from "../components/icons/gallery-icon"
 import { CloseIcon } from "../components/icons/close-icon"
 import { Footer } from "../components/footer"
 
-const galleryItems = [
+// Type definitions
+interface GalleryItem {
+  id: number;
+  type: string;
+  src: string;
+  title: string;
+  description: string;
+  category: string;
+  subCategory: string;
+}
+
+interface CategoryInfo {
+  label: string;
+  parent: string | null;
+  children?: string[];
+}
+
+const galleryItems: GalleryItem[] = [
   {
     id: 1,
     type: "image",
@@ -802,7 +819,7 @@ const galleryItems = [
 ]
 
 // Struktur kategori hierarkis
-const categoryStructure = {
+const categoryStructure: Record<string, CategoryInfo> = {
   all: { label: "All", parent: null },
   jakarta: { 
     label: "Jakarta", 
@@ -839,8 +856,11 @@ const categoryStructure = {
 }
 
 // Function to get item count for each category
-const getCategoryCount = (categoryId) => {
+const getCategoryCount = (categoryId: string): number => {
   if (categoryId === "all") return galleryItems.length
+  
+  // Type guard to ensure categoryId exists in categoryStructure
+  if (!(categoryId in categoryStructure)) return 0
   
   const category = categoryStructure[categoryId]
   if (category.children) {
@@ -853,13 +873,15 @@ const getCategoryCount = (categoryId) => {
 }
 
 export default function GalleryPage() {
-  const [selectedCategory, setSelectedCategory] = useState("all")
-  const [selectedImage, setSelectedImage] = useState(null)
-  const [expandedCategory, setExpandedCategory] = useState(null)
+  const [selectedCategory, setSelectedCategory] = useState<string>("all")
+  const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null)
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null)
 
   // Filter items based on selected category
-  const filteredItems = () => {
+  const filteredItems = (): GalleryItem[] => {
     if (selectedCategory === "all") return galleryItems
+    
+    if (!(selectedCategory in categoryStructure)) return []
     
     const category = categoryStructure[selectedCategory]
     if (category.children) {
@@ -877,13 +899,15 @@ export default function GalleryPage() {
   )
 
   // Get sub-categories for a parent category
-  const getSubCategories = (parentId) => {
+  const getSubCategories = (parentId: string): string[] => {
+    if (!(parentId in categoryStructure)) return []
+    
     const parent = categoryStructure[parentId]
     return parent.children ? parent.children : []
   }
 
   // Get all sub-categories that have assets
-  const getSubCategoriesWithAssets = () => {
+  const getSubCategoriesWithAssets = (): string[] => {
     const allSubCategories = Object.keys(categoryStructure).filter(key => 
       categoryStructure[key].parent !== null && getCategoryCount(key) > 0
     )
@@ -891,11 +915,11 @@ export default function GalleryPage() {
   }
 
   // Toggle category expansion
-  const toggleCategory = (categoryId) => {
+  const toggleCategory = (categoryId: string): void => {
     if (categoryId === "all") {
       setExpandedCategory(expandedCategory === "all" ? null : "all")
       setSelectedCategory(categoryId)
-    } else if (categoryStructure[categoryId].children) {
+    } else if (categoryId in categoryStructure && categoryStructure[categoryId].children) {
       setExpandedCategory(expandedCategory === categoryId ? null : categoryId)
       setSelectedCategory(categoryId)
     } else {
@@ -943,7 +967,7 @@ export default function GalleryPage() {
 
             {/* Sub Categories */}
             {expandedCategory === "all" ? (
-              // Show all sub-categories that have assets when "Semua" is expanded
+              // Show all sub-categories that have assets when "All" is expanded
               <div className="flex flex-wrap justify-center gap-2 mt-4 animate-fade-in-up">
                 <div className="w-full text-center mb-3">
                   <span className="text-sm text-gray-500 font-medium">Our Locations in Photos</span>
@@ -958,14 +982,14 @@ export default function GalleryPage() {
                         : "bg-pink-50 text-pink-700 hover:bg-pink-100 hover:text-pink-800 border border-pink-200"
                     }`}
                   >
-                    {categoryStructure[subCategoryId].label} ({getCategoryCount(subCategoryId)})
+                    {categoryStructure[subCategoryId]?.label} ({getCategoryCount(subCategoryId)})
                     <span className="text-xs opacity-75 ml-1">
-                      • {categoryStructure[categoryStructure[subCategoryId].parent].label}
+                      • {categoryStructure[subCategoryId]?.parent && categoryStructure[categoryStructure[subCategoryId].parent!]?.label}
                     </span>
                   </button>
                 ))}
               </div>
-            ) : expandedCategory && categoryStructure[expandedCategory].children ? (
+            ) : expandedCategory && categoryStructure[expandedCategory]?.children ? (
               // Show sub-categories for specific parent category
               <div className="flex flex-wrap justify-center gap-2 mt-4 animate-fade-in-up">
                 {getSubCategories(expandedCategory).map((subCategoryId) => (
@@ -978,7 +1002,7 @@ export default function GalleryPage() {
                         : "bg-pink-50 text-pink-700 hover:bg-pink-100 hover:text-pink-800 border border-pink-200"
                     }`}
                   >
-                    {categoryStructure[subCategoryId].label} ({getCategoryCount(subCategoryId)})
+                    {categoryStructure[subCategoryId]?.label} ({getCategoryCount(subCategoryId)})
                   </button>
                 ))}
               </div>
