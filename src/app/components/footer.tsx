@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { HeartIcon } from "./icons/heart-icon"
 
 
@@ -39,29 +40,29 @@ export function Footer() {
 
       {/* Navigation Links */}
       <div className="flex flex-wrap justify-center items-center gap-6 text-sm">
-        <a href="/" className="text-gray-500 hover:text-rose-500 transition-colors duration-200 hover:underline">
+        <Link href="/" className="text-gray-500 hover:text-rose-500 transition-colors duration-200 hover:underline">
           Home
-        </a>
+        </Link>
         <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-        <a href="/timeline" className="text-gray-500 hover:text-rose-500 transition-colors duration-200 hover:underline">
+        <Link href="/timeline" className="text-gray-500 hover:text-rose-500 transition-colors duration-200 hover:underline">
           Timeline
-        </a>
+        </Link>
         <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-        <a href="/story" className="text-gray-500 hover:text-rose-500 transition-colors duration-200 hover:underline">
+        <Link href="/story" className="text-gray-500 hover:text-rose-500 transition-colors duration-200 hover:underline">
           Story
-        </a>
+        </Link>
         <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-        <a href="/gallery" className="text-gray-500 hover:text-rose-500 transition-colors duration-200 hover:underline">
+        <Link href="/gallery" className="text-gray-500 hover:text-rose-500 transition-colors duration-200 hover:underline">
           Gallery
-        </a>
+        </Link>
         <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-        <a href="/secret-box" className="text-gray-500 hover:text-rose-500 transition-colors duration-200 hover:underline">
+        <Link href="/secret-box" className="text-gray-500 hover:text-rose-500 transition-colors duration-200 hover:underline">
           Secret Box
-        </a>
+        </Link>
         <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-        <a href="mailto:support@rizkymaulana.web.id" className="text-gray-500 hover:text-rose-500 transition-colors duration-200 hover:underline">
+        <Link href="mailto:support@rizkymaulana.web.id" className="text-gray-500 hover:text-rose-500 transition-colors duration-200 hover:underline">
           Contact us
-        </a>
+        </Link>
       </div>
 
       {/* Footer */}
