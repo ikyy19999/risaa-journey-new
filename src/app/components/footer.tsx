@@ -63,6 +63,9 @@ export function Footer() {
         <Link href="mailto:support@rizkymaulana.web.id" className="text-gray-500 hover:text-rose-500 transition-colors duration-200 hover:underline">
           Contact us
         </Link>
+        <Link href="https://charity.rizkymaulana.web.id" className="text-gray-500 hover:text-rose-500 transition-colors duration-200 hover:underline">
+          Our pastry shop website
+        </Link>
       </div>
 
       {/* Footer */}
