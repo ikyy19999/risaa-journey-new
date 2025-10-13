@@ -7,6 +7,7 @@ import { PageTransition } from "./components/page-transition"
 import DisableInspect from "./components/DisableRightClick"
 import WelcomePage from "./welcome/page"
 import Page from "./button/page"
+import TawkToChat from "./components/TawkToChat"
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function RootLayout({
         <WelcomePage />
         <DisableInspect />
         <FloatingHearts />
+        <TawkToChat />
         <PageTransition>{children}</PageTransition>
       </body>
     </html>

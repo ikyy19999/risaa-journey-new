@@ -4,13 +4,12 @@ import { Footer } from "../components/footer"
 import { MusicIcon } from "../components/icons/music-icon"
 import { Navbar } from "../components/navbar"
 
-
 const playlists = [
   {
     id: 1,
     title: "Our Love Songs",
     description: "Lagu-lagu yang mengiringi perjalanan cinta kami",
-    spotifyId: "37i9dQZF1DX0XUsuxWHRQd", // Example Spotify playlist ID
+    spotifyId: "37i9dQZF1DX0XUsuxWHRQd",
     cover: "/playlist-love-songs-cover.jpg",
     songCount: 25,
   },
@@ -32,34 +31,119 @@ const playlists = [
   },
 ]
 
-const favoriteSongs = [
-  {
-    title: "Perfect",
-    artist: "Ed Sheeran",
-    reason: "Lagu pertama yang kita dengarkan bersama",
-    memory: "Saat kencan pertama di taman kota",
+// Top 10 Songs untuk Anda
+const myTop10 = [
+  { 
+    title: "Blinding Lights", 
+    artist: "The Weeknd", 
+    spotifyId: "3mTXjYAb9soZ8dnae1Y7Z5" 
   },
-  {
-    title: "All of Me",
-    artist: "John Legend",
-    reason: "Lagu yang kamu nyanyikan untukku",
-    memory: "Malam Valentine yang tak terlupakan",
+  { 
+    title: "Save Your Tears", 
+    artist: "The Weeknd", 
+    spotifyId: "5QO79kh1waicV47BqGRL3g" 
   },
-  {
-    title: "Thinking Out Loud",
-    artist: "Ed Sheeran",
-    reason: "Lagu dance pertama kita",
-    memory: "Di ruang tamu rumah kecil kita",
+  { 
+    title: "Levitating", 
+    artist: "Dua Lipa", 
+    spotifyId: "39LLxExYz6ewLAcYrzQQyP" 
   },
-  {
-    title: "A Thousand Years",
-    artist: "Christina Perri",
-    reason: "Lagu yang selalu membuatku memikirkanmu",
-    memory: "Setiap kali kita berpisah sementara",
+  { 
+    title: "Stay", 
+    artist: "The Kid LAROI, Justin Bieber", 
+    spotifyId: "5PjdY0CKGZdEuoNab3yDmX" 
+  },
+  { 
+    title: "Good 4 U", 
+    artist: "Olivia Rodrigo", 
+    spotifyId: "4ZtFanR9U6ndgddUvNcjcG" 
+  },
+  { 
+    title: "Heat Waves", 
+    artist: "Glass Animals", 
+    spotifyId: "02MWAaffLxlfxAUY7c5dvx" 
+  },
+  { 
+    title: "Easy On Me", 
+    artist: "Adele", 
+    spotifyId: "0gplL1WMoJ6iYaPgMCL0gX" 
+  },
+  { 
+    title: "Industry Baby", 
+    artist: "Lil Nas X", 
+    spotifyId: "27NovPIUIRrOZoCHxABJwK" 
+  },
+  { 
+    title: "Shivers", 
+    artist: "Ed Sheeran", 
+    spotifyId: "6bQfNiqyCX7UaQSvVVGo4I" 
+  },
+  { 
+    title: "As It Was", 
+    artist: "Harry Styles", 
+    spotifyId: "4LRPiXqCikLlN15c3yImP7" 
+  },
+]
+
+// Top 10 Songs untuk Pacar
+const partnerTop10 = [
+  { 
+    title: "drivers license", 
+    artist: "Olivia Rodrigo", 
+    spotifyId: "5wANPM4fQCJwkGd4rN57mH" 
+  },
+  { 
+    title: "Stay", 
+    artist: "The Kid LAROI, Justin Bieber", 
+    spotifyId: "5PjdY0CKGZdEuoNab3yDmX" 
+  },
+  { 
+    title: "Peaches", 
+    artist: "Justin Bieber", 
+    spotifyId: "4iJyoBOLtHqaGxP12qzhQI" 
+  },
+  { 
+    title: "Kiss Me More", 
+    artist: "Doja Cat ft. SZA", 
+    spotifyId: "748mdHapucXQri7IAO8yFK" 
+  },
+  { 
+    title: "Montero", 
+    artist: "Lil Nas X", 
+    spotifyId: "6jbuHi4WwzcbgS6dNPaqlm" 
+  },
+  { 
+    title: "Leave The Door Open", 
+    artist: "Silk Sonic", 
+    spotifyId: "7MAibcTli4IisCtbHKrGMh" 
+  },
+  { 
+    title: "Deja Vu", 
+    artist: "Olivia Rodrigo", 
+    spotifyId: "6nB9nIJxUIdp6eglBoM6C3" 
+  },
+  { 
+    title: "positions", 
+    artist: "Ariana Grande", 
+    spotifyId: "35eY3BSFjRgE36afg4aYe4" 
+  },
+  { 
+    title: "Therefore I Am", 
+    artist: "Billie Eilish", 
+    spotifyId: "54bFM56PmE4YLRnqpW6Tha" 
+  },
+  { 
+    title: "34+35", 
+    artist: "Ariana Grande", 
+    spotifyId: "6Im9k8u9iIzKMrmV7BWtlF" 
   },
 ]
 
 export default function PlaylistPage() {
+  const handleSongClick = (spotifyId: string) => {
+    window.open(`https://open.spotify.com/track/${spotifyId}`, '_blank')
+  }
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
       <Navbar />
@@ -77,6 +161,7 @@ export default function PlaylistPage() {
           </p>
         </div>
 
+        {/* Main Playlist */}
         <div className="max-w-4xl mx-auto mb-20">
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <h2 className="font-playfair text-2xl font-bold text-gray-900 mb-6 text-center">The Playlist of Us</h2>
@@ -92,65 +177,79 @@ export default function PlaylistPage() {
                 className="rounded-xl"
               ></iframe>
             </div>
-            {/* <p className="text-center text-gray-500 text-sm mt-4">
-              Ganti playlist ID di atas dengan playlist Spotify kalian yang sebenarnya
-            </p> */}
           </div>
         </div>
 
-        {/* <div className="max-w-6xl mx-auto mb-20">
-          <h2 className="font-playfair text-2xl font-bold text-gray-900 mb-8 text-center">Playlist Lainnya</h2>
+        {/* Top 10 Section */}
+        <div className="max-w-6xl mx-auto mb-20">
+          <h2 className="font-playfair text-3xl font-bold text-gray-900 mb-12 text-center">
+            Our <span className="bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">Top 10</span> Songs
+          </h2>
+          
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {playlists.slice(1).map((playlist, index) => (
-              <div
-                key={playlist.id}
-                className="bg-white rounded-2xl shadow-lg p-6 animate-fade-in-up"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <h3 className="font-playfair text-xl font-bold text-gray-900 mb-2">{playlist.title}</h3>
-                <p className="text-gray-600 text-sm mb-4">{playlist.description}</p>
-                <div className="rounded-xl overflow-hidden">
-                  <iframe
-                    src={`https://open.spotify.com/embed/playlist/${playlist.spotifyId}?utm_source=generator&theme=0`}
-                    width="100%"
-                    height="152"
-                    frameBorder="0"
-                    allowFullScreen
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                    className="rounded-xl"
-                  ></iframe>
-                </div>
+            {/* My Top 10 */}
+            <div className="bg-white rounded-2xl shadow-lg p-6 animate-fade-in-up">
+              <div className="text-center mb-6">
+                <h3 className="font-playfair text-2xl font-bold text-gray-900 mb-2">My Top 10</h3>
+                {/* <p className="text-gray-600">Lagu-lagu favorit yang selalu ada di playlistku</p> */}
               </div>
-            ))}
-          </div>
-        </div> */}
+              
+              <div className="space-y-3">
+                {myTop10.map((song, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center space-x-4 p-4 rounded-xl bg-gradient-to-r from-pink-50 to-purple-50 hover:from-pink-100 hover:to-purple-100 transition-all duration-300 group cursor-pointer"
+                    onClick={() => handleSongClick(song.spotifyId)}
+                  >
+                    <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">{index + 1}</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-semibold text-gray-900 truncate group-hover:text-pink-600 transition-colors">
+                        {song.title}
+                      </h4>
+                      <p className="text-gray-600 text-sm truncate">oleh {song.artist}</p>
+                    </div>
+                    <div className="flex-shrink-0">
+                      <MusicIcon className="w-5 h-5 text-gray-400 group-hover:text-pink-500 transition-colors" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-        {/* Favorite Songs */}
-        {/* <div className="max-w-4xl mx-auto pb-20">
-          <h2 className="font-playfair text-2xl font-bold text-gray-900 mb-8 text-center">Lagu-lagu Spesial Kami</h2>
-          <div className="space-y-6">
-            {favoriteSongs.map((song, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 animate-fade-in-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center">
-                    <MusicIcon className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-playfair text-lg font-bold text-gray-900">{song.title}</h3>
-                    <p className="text-gray-600 text-sm mb-2">oleh {song.artist}</p>
-                    <p className="text-pink-600 text-sm font-medium mb-1">{song.reason}</p>
-                    <p className="text-gray-500 text-sm italic">{song.memory}</p>
-                  </div>
-                </div>
+            {/* Partner's Top 10 */}
+            <div className="bg-white rounded-2xl shadow-lg p-6 animate-fade-in-up">
+              <div className="text-center mb-6">
+                <h3 className="font-playfair text-2xl font-bold text-gray-900 mb-2">Her Top 10</h3>
+                {/* <p className="text-gray-600">Lagu-lagu spesial yang berarti buat dia</p> */}
               </div>
-            ))}
+              
+              <div className="space-y-3">
+                {partnerTop10.map((song, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center space-x-4 p-4 rounded-xl bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 transition-all duration-300 group cursor-pointer"
+                    onClick={() => handleSongClick(song.spotifyId)}
+                  >
+                    <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">{index + 1}</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-semibold text-gray-900 truncate group-hover:text-purple-600 transition-colors">
+                        {song.title}
+                      </h4>
+                      <p className="text-gray-600 text-sm truncate">oleh {song.artist}</p>
+                    </div>
+                    <div className="flex-shrink-0">
+                      <MusicIcon className="w-5 h-5 text-gray-400 group-hover:text-purple-500 transition-colors" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        </div> */}
+        </div>
       </div>
       <Footer />
     </main>
