@@ -123,7 +123,7 @@ export default function WelcomePopup() {
             {/* Popup Content */}
             <div className="p-4 md:p-6">
               {/* Countdown Timer */}
-              <div className="mb-4 p-3 bg-gradient-to-r from-rose-50 to-pink-50 rounded-2xl border border-rose-100">
+              {/* <div className="mb-4 p-3 bg-gradient-to-r from-rose-50 to-pink-50 rounded-2xl border border-rose-100">
                 <div className="text-center mb-2">
                   <Gift className="w-5 h-5 md:w-6 md:h-6 text-rose-500 mx-auto mb-1" />
                   <h4 className="text-sm md:text-base font-semibold text-slate-800">
@@ -159,7 +159,7 @@ export default function WelcomePopup() {
                     <p className="text-sm text-slate-600 mt-2">Lets Drop Some Birthday Wishes</p>
                   </div>
                 )}
-              </div>
+              </div> */}
 
               <div className="text-center mb-4 md:mb-6">
                 <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-2 md:mb-3">Hey there! Welcome!</h3>
@@ -186,7 +186,7 @@ export default function WelcomePopup() {
               </div>
               
               {/* Birthday Message Button */}
-              <Button
+              {/* <Button
                 onClick={handleBirthdayMessage}
                 className={`w-full rounded-full font-medium shadow-lg transition-all duration-300 text-sm md:text-base py-2.5 md:py-3 ${
                   isTimeUp 
@@ -196,7 +196,7 @@ export default function WelcomePopup() {
               >
                 <Gift className="w-4 h-4 mr-2" />
                 {isTimeUp ? "Send Birthday Wishes to Salma, guys" : "Send Birthday Wishes to Salma(soon)"}
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>
